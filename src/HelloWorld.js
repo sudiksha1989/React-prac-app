@@ -1,29 +1,5 @@
 import React,{Component} from 'react';
 import './HelloWorld.css'
-import d2 from 'd2/lib/d2';
-import HeaderBar from '@dhis2/d2-ui-header-bar';
-// Using CommonJS imports
-//var d2 = require('d2/lib/d2');
-import { init } from 'd2/lib/d2';
-import { getInstance } from 'd2/lib/d2';
-
-
-init({ baseUrl: 'http://88.80.191.115:29014/mh_revamping/api/' })
-  .then(d2 => {
-    //Your d2 is initialised and ready to use.
-    console.log("Your d2 is initialised and ready to use.")
-  });
- getInstance()
-      .then(d2 => {
-          console.log(d2.currentUser.name); // Will log when the init() function is done initialising the instance
-      });
-
-
-   
-
-      export default function(props) {
-          return (<HeaderBar d2={props.d2}/>)
-      }
 
 
 class HelloWorld extends Component{

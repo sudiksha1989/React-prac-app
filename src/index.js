@@ -19,37 +19,46 @@ init({ baseUrl: newbaseUrl })
     //Your d2 is initialised and ready to use.
     console.log("Your d2 is initialised and ready to use.")
   });
- getInstance()
-      .then(d2 => {
-          console.log(d2.currentUser.name); // Will log when the init() function is done initialising the instance
-         // console.log(Object.keys(d2.models));
-         d2.models.organisationUnit.get('b3vBdsycgAD').then(organisationUnitModel => console.log(organisationUnitModel.name));
+  getInstance()
+  .then(d2 => {
+      console.log(d2.currentUser.name); // give current user
+    // d2.models.organisationUnit.get('v8EzhiynNtf').then(organisationUnitModel => console.log(organisationUnitModel.name));
+     
+    /* d2.models.organisationUnit.list({ paging: false }).then(organisationUnitCollection => { 
+      let organisationUnitsm = [...organisationUnitCollection.values()]
+
+      organisationUnitsm.forEach(function(organisationUnitsm) {
+       console.log("organisationUnits-----"+organisationUnitsm.name+" "+organisationUnitsm.code);
+     });
+       
+    }); 
+     d2.models.organisationUnit .filter().on('level').equals(2).list() .then(
+         organisationUnitCollection => 
+         console.log(organisationUnitCollection));
+
          
-         d2.models.organisationUnit.list().then( organisationUnitCollection => 
-             console.log(organisationUnitCollection));
-         d2.models.organisationUnit .filter().on('level').equals(2) .list() .then(
-             organisationUnitCollection => 
-             console.log(organisationUnitCollection));
-         d2.models.organisationUnit .filter().on('level').equals(2) .list()
-         .then(organisationUnitCollection => { 
-            let organisationUnits = organisationUnitCollection.toArray()
-            let organisationUnitsm = [...organisationUnitCollection.values()]
-            console.log("organisationUnits-----"+organisationUnitsm[0].name+" "+organisationUnitsm[0].code);
-         }); 
-             
+     d2.models.organisationUnit .filter().on('level').equals(2) .list()
+     .then(organisationUnitCollection => { 
+        let organisationUnits = organisationUnitCollection.toArray()
+        let organisationUnitsm = [...organisationUnitCollection.values()]
+        console.log("organisationUnits-----"+organisationUnitsm[0].name+" "+organisationUnitsm[0].code);
+     }); 
+         
 
-         const organisationUnitsOnLevel3 = d2.models.organisationUnit .filter().on('level').equals(3);
-         const organisationUnitsOnLevel3WithParent = organisationUnitsOnLevel3 .filter().on('parent.id').equals('b3vBdsycgAD');
-         organisationUnitsOnLevel3.list({ paging: false }).then(organisationUnitCollection => { 
-           let organisationUnitsm = [...organisationUnitCollection.values()]
+     const organisationUnitsOnLevel3 = d2.models.organisationUnit //.filter().on('level').equals(3);
+     const organisationUnitsOnLevel3WithParent = organisationUnitsOnLevel3 .filter().on('parent.id').equals('b3vBdsycgAD');
+     organisationUnitsOnLevel3.list({ paging: false }).then(organisationUnitCollection => { 
+       let organisationUnitsm = [...organisationUnitCollection.values()]
 
-           organisationUnitsm.forEach(function(organisationUnitsm) {
-            console.log("organisationUnits-----"+organisationUnitsm.name+" "+organisationUnitsm.code);
-          });
-            
-         }); 
-        // console.log("organisationUnits-----"+organisationUnitsOnLevel3WithParent[0].name+" "+organisationUnitsOnLevel3WithParent[0].code); 
+       var myJsonString = JSON.stringify(organisationUnitsm);
+
+       organisationUnitsm.forEach(function(organisationUnitsm) {
+        console.log("organisationUnits-----"+organisationUnitsm.name+" "+organisationUnitsm.code);
       });
+        
+     }); */
+    // console.log("organisationUnits-----"+organisationUnitsOnLevel3WithParent[0].name+" "+organisationUnitsOnLevel3WithParent[0].code); 
+  });
  //d2.models.organisationUnit.get('b3vBdsycgAD').then(organisationUnitModel => console.log(organisationUnitModel)); 
  //d2.models.organisationUnit.list() .then(organisationUnitCollection => console.log(organisationUnitCollection));
 ReactDOM.render(<App />, document.getElementById('root'));

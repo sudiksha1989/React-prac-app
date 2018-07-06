@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './HelloWorld.css'
+import { getInstance } from 'd2/lib/d2';
 
 
 class HelloWorld extends Component{
@@ -10,7 +11,14 @@ class HelloWorld extends Component{
     //this.removeGreeting =this.removeGreeting .bind(this);
   }
   frenchify(){
-    this.setState({greeting:'Bonjour'})
+    var username;
+    getInstance()
+      .then(d2 => {
+        username=d2.currentUser.name
+          console.log(d2.currentUser.name); 
+          this.setState({greeting:username})
+         });
+    
   }
   removeGreeting(){
     this.props.removeGreeting(this.props.name)
@@ -24,7 +32,7 @@ class HelloWorld extends Component{
     <br/><br/>
     <button onClick={this.removeGreeting.bind( this)}>Remove me</button>
     </div>)
-
+   
   }
   
 } 

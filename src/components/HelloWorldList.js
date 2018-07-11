@@ -32,7 +32,7 @@ class HelloWorldList extends Component{
     
     render(){
         return (
-            <div className='HelloWorldList'>
+            <div className='MainPage'>
                 <AddGreeter addGreeting={this.addGreeting}/>
                 {this.renderGreetings()}         
             </div>

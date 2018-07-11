@@ -1,0 +1,19 @@
+.LeftBar{
+    height: 100%;
+    width: 220px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ECEDEE;
+    overflow-x: hidden;
+    padding-top: 20px;
+    border-color: #DFE1E2
+}
+ul{
+    margin-top:50px;
+    list-style-type: none;
+}
+ul li a{
+    text-decoration: none;
+}

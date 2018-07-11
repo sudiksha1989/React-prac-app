@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css'
-import HelloWorld from './HelloWorld';
-import HelloWorldList from './HelloWorldList';
-
+import MainPage from './components/Main';
+import LeftBar from './components/LeftBar/LeftBar'
 
 const App=()=>{
-  return(<div className='App'><HelloWorldList/></div>)
+  return(<div className='App'>
+  <LeftBar/>
+  <MainPage/></div>)
 }
 
 export default App;

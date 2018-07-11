@@ -9,6 +9,30 @@
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <script type="text/javascript" src="../../../dhis-web-core-resource/react-15/react-15.min.js"></script>
+    <script type="text/javascript" src="../../../dhis-web-core-resource/rxjs/4.1.0/rx.lite.min.js"></script>
+    <script type="text/javascript" src="../../../dhis-web-core-resource/lodash/4.15.0/lodash.min.js"></script>
+    <script type="text/javascript" src="../../../dhis-web-core-resource/lodash-functional/lodash-functional.js"></script>
+
+    <script type="text/javascript" src="../../../dhis-web-commons/javascripts/header-bar/babel-polyfill.js?_rev=0.1.7"></script>
+    <script type="text/javascript" src="../../../dhis-web-commons/javascripts/header-bar/header-bar.js?_rev=0.1.7"></script>
+    
+    <script>
+      window.onload = function(){
+  /* Menu Bar */
+      try {
+          if ('Dhis2HeaderBar' in window) {
+              Dhis2HeaderBar.initHeaderBar(document.querySelector('#header'), '../../../api', { noLoadingIndicator: true });
+          }
+      } catch (e) {
+          if ('console' in window) {
+              console.error(e);
+          }
+      }
+      
+  /********/
+  }
+  </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -24,18 +48,15 @@
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
+   
+    <div id="header">
+    <img id="headerBanner" src="../../../api/staticContent/logo_banner" style="cursor:pointer" title="View home page">
+
+    <div id="dhisDropDownMenu"></div>
+    </div>
+
+    <!-- // End menu -->
+    <div id="root"></div>  
     
-    <div id="root"></div>
-    <d2-header-bar></d2-header-bar>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

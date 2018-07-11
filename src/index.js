@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import d2 from 'd2/lib/d2';
+import {MemoryRouter} from 'react-router-dom';
 
 import { init } from 'd2/lib/d2';
 
@@ -61,5 +61,5 @@ init({ baseUrl: newbaseUrl })
   });
  //d2.models.organisationUnit.get('b3vBdsycgAD').then(organisationUnitModel => console.log(organisationUnitModel)); 
  //d2.models.organisationUnit.list() .then(organisationUnitCollection => console.log(organisationUnitCollection));
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<MemoryRouter><App /></MemoryRouter>, document.getElementById('root'));
 registerServiceWorker();

@@ -3,13 +3,14 @@ import './HelloWorldList.css'
 
 import HelloWorld from './HelloWorld';
 import AddGreeter from './AddGreeter';
+import Treeview from './Treeview/treeview'
 
 
 
 class HelloWorldList extends Component{
     constructor(props){
         super(props);
-        this.state={greeting:['Jim','Sally','Bender']}
+        this.state={greeting:['Jim','sally']}
         this.addGreeting =this.addGreeting.bind(this);
         this.removeGreeting=this.removeGreeting.bind(this)
     }
@@ -33,6 +34,7 @@ class HelloWorldList extends Component{
     render(){
         return (
             <div className='MainPage'>
+               <Treeview/>
                 <AddGreeter addGreeting={this.addGreeting}/>
                 {this.renderGreetings()}         
             </div>

@@ -1,0 +1,49 @@
+ul {
+  padding-left: 20px;
+  list-style: none;
+}
+
+p {
+  font-weight: 600;
+  color: #541400;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*body {
+      margin: 20px;
+    }
+    
+    .bootstrap-demo .dropdown-trigger {
+      border-radius: 0.25rem;
+    }
+    
+    .bootstrap-demo .dropdown-trigger > span:after {
+      font-size: 10px;
+      color: #555;
+    }
+    
+    .bootstrap-demo .toggle {
+      font: normal normal normal 17px/1 FontAwesome;
+      color: #555;
+    }
+    
+    .bootstrap-demo .toggle.collapsed::after {
+      content: "\f107";
+    }
+    
+    .bootstrap-demo .toggle.expanded::after {
+      content: "\f105";
+    }
+    */

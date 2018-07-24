@@ -7,8 +7,6 @@ import {MemoryRouter} from 'react-router-dom';
 
 import { init } from 'd2/lib/d2';
 
-import { getInstance } from 'd2/lib/d2';
-
 let baseUrl = (window.location.href).split("api");
 let newbaseUrl=baseUrl[0]+"/api";
 
@@ -16,10 +14,20 @@ console.log("baseUrl----"+newbaseUrl[0]+"/api");
 
 init({ baseUrl: newbaseUrl })
   .then(d2 => {
-    //Your d2 is initialised and ready to use.
+    ReactDOM.render(<MemoryRouter><App d2={d2}/></MemoryRouter>, document.getElementById('root'));
+    registerServiceWorker();
     console.log("Your d2 is initialised and ready to use.")
-  });
-  getInstance()
+      }) 
+      .catch(err => console.error(err));
+  
+ 
+
+
+
+/*
+
+
+getInstance()
   .then(d2 => {
       console.log(d2.currentUser.name); // give current user
     // d2.models.organisationUnit.get('v8EzhiynNtf').then(organisationUnitModel => console.log(organisationUnitModel.name));
@@ -56,10 +64,6 @@ init({ baseUrl: newbaseUrl })
         console.log("organisationUnits-----"+organisationUnitsm.name+" "+organisationUnitsm.code);
       });
         
-     }); */
+     }); 
     // console.log("organisationUnits-----"+organisationUnitsOnLevel3WithParent[0].name+" "+organisationUnitsOnLevel3WithParent[0].code); 
-  });
- //d2.models.organisationUnit.get('b3vBdsycgAD').then(organisationUnitModel => console.log(organisationUnitModel)); 
- //d2.models.organisationUnit.list() .then(organisationUnitCollection => console.log(organisationUnitCollection));
-ReactDOM.render(<MemoryRouter><App /></MemoryRouter>, document.getElementById('root'));
-registerServiceWorker();
+  });*/

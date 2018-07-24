@@ -8,12 +8,18 @@
     background-color: #ECEDEE;
     overflow-x: hidden;
     padding-top: 20px;
-    border-color: #DFE1E2
+    border: .5px solid #DFE1E2;
 }
 ul{
-    margin-top:50px;
+    margin-top:70px;
     list-style-type: none;
 }
 ul li a{
     text-decoration: none;
 }
+.topcorner{
+    position:absolute;
+    top:55px;
+    right:10px;
+    color: black;
+   }

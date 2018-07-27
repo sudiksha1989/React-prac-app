@@ -35,8 +35,6 @@ class HelloWorldList extends Component{
         return (
             <div className='MainPage'>
                <Treeview/>
-                <AddGreeter addGreeting={this.addGreeting}/>
-                {this.renderGreetings()}         
             </div>
         )
     }

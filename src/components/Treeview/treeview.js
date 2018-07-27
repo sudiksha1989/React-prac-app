@@ -1,89 +1,99 @@
 import React,{Component} from 'react';
-import DropdownTreeSelect from "react-dropdown-tree-select";
 import "./treeview.css";
-import data from "./data.json";
-import { getInstance } from 'd2/lib/d2';
-
+import TreeBeard from '../treebeard/components/treebeard';
 
 class Treeview extends React.Component {
 
 
-
-
   constructor(props) {
     super(props);
-
-    const d2 = props.d2;
-		this.state = {
-			d2: d2,
-			data: [
-        {'id':1 ,'parentid' : 0},
-        {'id':4 ,'parentid' : 2},
-        {'id':3 ,'parentid' : 1},
-        {'id':5 ,'parentid' : 0},
-        {'id':6 ,'parentid' : 0},
-        {'id':2 ,'parentid' : 1},
-        {'id':7 ,'parentid' : 4},
-        {'id':8 ,'parentid' : 1},
-        {'id':9 ,'parentid' : 4},
-        {'id':10 ,'parentid' : 9},
-        {'id':11 ,'parentid' : 10},
-        {'id':12 ,'parentid' : 11},
-        {'id':13 ,'parentid' : 12},
-        {'id':14 ,'parentid' : 13}
-        
-      ],
-			tree: [],
-			preRoot: undefined
-		};
-    
-   console.log("treeview"+d2.currentUser.name);
-    const organisationUnitsOnLevel3 = d2.models.organisationUnit.filter().on('level').equals(8);
-    organisationUnitsOnLevel3.list({ paging: false }).then(organisationUnitCollection => { 
-      let organisationUnitsm = [...organisationUnitCollection.values()]
-      console.log('*(, optionalParams')
-     });
-     this.unflatten(this.state.data)
+    this.state = {
+        error: null,
+        error1: null,
+        isLoaded: false,
+        orgUnits: [],
+        orgUnitName: '',
+        orgUnitID: '',
+        levels: undefined
     }
-
- unflatten(arr) {
-  var tree = [],
-      mappedArr = {},
-      arrElem,
-      mappedElem;
-
-  // First map the nodes of the array to an object -> create a hash table.
-  for(var i = 0, len = arr.length; i < len; i++) {
-    arrElem = arr[i];
-    mappedArr[arrElem.id] = arrElem;
-    mappedArr[arrElem.id]['children'] = [];
-  }
-
-
-  for (var id in mappedArr) {
-    if (mappedArr.hasOwnProperty(id)) {
-      mappedElem = mappedArr[id];
-      // If the element is not at the root level, add it to its parent array of children.
-      if (mappedElem.parentid) {
-        mappedArr[mappedElem['parentid']]      ['children'].push(mappedElem);
-      }
-      // If the element is at the root level, add it to first level elements array.
-      else {
-        tree.push(mappedElem);
-      }
-    }
-  }
-  this.state({tree}) ;
+    this.onToggle = this.onToggle.bind(this);
+    this.closeSidebar = this.closeSidebar.bind(this);
 }
 
+componentDidMount() {
+    let url = '../../../api/organisationUnits.json?paging=false&level=2&fields=id,name';
+    fetch("../../../api/organisationUnitLevels.json",{
+        credentials: 'include'
+    })
+    .then (response => response.json())
+    .then (
+        (result) => {
+            let levels = result.pager.total;
+            this.setState({
+                levels: levels
+            })
+            for (let i = 1; i < levels-1; i++) {
+                url += ',children[id,name';
+            }
+            url += ']';
+            fetch(url,{
+                credentials:'include'
+            })
+            .then(response => response.json())
+            .then(
+                (result1) => {
+                    result1.organisationUnits[0].toggled = true;
+                    this.setState({
+                    isLoaded: true,
+                    orgUnits: result1.organisationUnits,
+                    });
+                },
+                (error1) => {
+                    this.setState({
+                        isLoaded: true,
+                        error1
+                    });
+                }    
+            )
+        },
+        (error) => {
+            this.setState({
+                error
+            });
+        }
+    )
+}
 
+onToggle(node, toggled) {
+    if(this.state.cursor){this.state.cursor.active = false;}
+    node.active = true;
+    this.setState({
+        orgUnitName: node.name,
+        orgUnitID: node.id
+    });
+
+    if(node.children){ node.toggled = toggled; }
+    this.setState({ cursor: node });
+}
+
+openSidebar() {
+    document.getElementById("sidebar").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+}
+
+closeSidebar() {
+    document.getElementById("sidebar").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+}
 
   render() {
-    
-    return (
-      <div>
-        {JSON.stringify(this.state.tree, null, " ")}
-      </div>
+    const { error, error1, isLoaded, orgUnits, orgUnitName, orgUnitID, levels} = this.state;
+       
+   return (
+    (error || error1) ? <div>{error.message}</div> :
+                (!isLoaded) ? <div>Loading...</div> :
+                <TreeBeard data={orgUnits}
+                           onToggle={this.onToggle} />
     )
   }
 }
@@ -99,7 +109,7 @@ class Treeview extends Component {
   constructor(props) {
     super(props);
     var arrr=[];
-      vargetInstance().then(d2 => {
+      getInstance().then(d2 => {
             console.log("treeview"+d2.currentUser.name);
             const organisationUnitsOnLevel3 = d2.models.organisationUnit//.filter().on('level').equals(8);
             organisationUnitsOnLevel3.list({ paging: false }).then(organisationUnitCollection => { 
@@ -289,3 +299,8 @@ const Treeview = () => {
 export default Treeview;*/
 
 //render(<App />, document.getElementById("root"));
+
+
+
+// WEBPACK FOOTER //
+// ./src/components/Treeview/treeview.js

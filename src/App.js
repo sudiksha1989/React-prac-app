@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css'
-import MainPage from './components/Main';
+import MainPage from './components/Home/Main';
 import LeftBar from './components/LeftBar/LeftBar'
 
 const App=()=>{

@@ -6,7 +6,7 @@ import defaultDecorators from './decorators';
 import defaultTheme from '../themes/default';
 import defaultAnimations from '../themes/animations';
 
-class TreeBeard extends Component {
+class Tree extends Component {
     render() {
         const {animations, decorators, data: propsData, onToggle, style} = this.props;
         let data = propsData;
@@ -31,7 +31,7 @@ class TreeBeard extends Component {
     }
 }
 
-TreeBeard.propTypes = {
+Tree.propTypes = {
     style: PropTypes.object,
     data: PropTypes.oneOfType([
         PropTypes.object,
@@ -45,10 +45,10 @@ TreeBeard.propTypes = {
     decorators: PropTypes.object
 };
 
-TreeBeard.defaultProps = {
+Tree.defaultProps = {
     style: defaultTheme,
     animations: defaultAnimations,
     decorators: defaultDecorators
 };
 
-export default TreeBeard;
+export default Tree;

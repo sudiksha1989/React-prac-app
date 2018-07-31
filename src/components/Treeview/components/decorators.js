@@ -17,9 +17,7 @@ const Toggle = ({style}) => {
     const {height, width} = style;
     const midHeight = height * 0.5;
     const points = `0,0 0,${height} ${width},${midHeight}`;
-/*<svg height={height} width={width}>
-                    <polygon points={points} style={style.arrow}/>
-                </svg>*/
+
     return (
         <div style={style.base}>
             <div style={style.wrapper}>
@@ -32,11 +30,11 @@ Toggle.propTypes = {
     style: PropTypes.object
 };
 
-const Header = ({style, decorators, terminal, onClick, node}) => {
+const Header = ({node, style}) => {
     return (
         
-        <div style={style.base}   >
-        <input type="checkbox" onClick={onClick} value={node} /><label style={style.showdata}>{node.name}</label>
+        <div style={style.base}>
+        <input type="checkbox"  value={node} /><label style={style.showdata}>{node.name}</label>
         </div>
     );
 };
@@ -50,7 +48,7 @@ class Container extends Component {
         const {style, decorators, terminal, onClick, node} = this.props;
 
         return (
-            <div  
+            <div onClick={onClick} 
                  ref={ref => this.clickableRef = ref}
                  style={style.container}>
                 {!terminal ? this.renderToggle() : null}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Home from './Home'
-import HelloWorldList from './HelloWorldList'
+import LockException from '../LockException'
 import './Main.css'
 
 // The Main component renders one of the three provided
@@ -13,7 +13,7 @@ const MainPage = () => (
   <main className='main'>
     <Switch>
       <Route exact path='/' component={Home}/>
-      <Route path='/LockException' component={HelloWorldList}/>
+      <Route path='/LockException' component={LockException}/>
      </Switch>
   </main>
 )

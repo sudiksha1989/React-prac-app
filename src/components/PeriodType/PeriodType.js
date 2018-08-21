@@ -1,27 +1,103 @@
 import React from 'react';
 import {DropdownButton,MenuItem,ButtonToolbar}  from 'react-bootstrap'
 
+
+
+class PeriodType extends React.Component{
+constructor(props){
+  super(props)
+  this.state={
+    period:['Daily','Weekly','WeeklyWednesday','WeeklyThursday','WeeklySaturday','WeeklySunday','BiMonthly','Quarterly','SixMonthly','SixMonthlyApril','Yearly','FinancialApril','FinancialJuly','FinancialOct'],
+    button:'Period Type'
+  }
+}
+handleUpdate(event){
+  console.log(event)
+  this.setState({button:event})
+}
+
+renderDropdownButton() {
+ 
+ 
+  var  listItems = this.state.period.map((val) =>
+   <MenuItem eventKey={val}>{val}</MenuItem>
+   );
+
+
+  return (
+    <DropdownButton onSelect={this.handleUpdate.bind(this)}
+      title={this.state.button}>
+      {listItems}
+     </DropdownButton>
+  );
+}
+
+
+
+
+
+render() {
+  return (
+      <ButtonToolbar>{this.renderDropdownButton()}</ButtonToolbar>
+   );
+}
+
+
+
+
+
+
+
+}
+
+
+
+
+
+export default PeriodType
+
+
+
+
+
+
+
+
+
+/*
+
+
 const BUTTONS = ['Daily','Weekly','WeeklyWednesday','WeeklyThursday','WeeklySaturday','WeeklySunday','BiMonthly','Quarterly','SixMonthly','SixMonthlyApril','Yearly','FinancialApril','FinancialJuly','FinancialOct'];
 
-function renderDropdownButton(title, i) {
+
+
+
+
+
+var listItems = BUTTONS.map(function(d, idx){
+ return (<MenuItem eventKey={d}>{d}</MenuItem>)
+})
+
+function renderDropdownButton() {
+  const title='default';
   return (
     <DropdownButton
       bsStyle={title.toLowerCase()}
       title={title}
-      key={i}
-      id={`dropdown-basic-${i}`}
+      key={title}
+     id={`dropdown-basic-${i}`}
     >
-      <MenuItem eventKey={}>{}</MenuItem>
+      {listItems}
       </DropdownButton>
   );
 }
 
 const PeriodType = () => (
-  <ButtonToolbar>{BUTTONS.map(renderDropdownButton)}</ButtonToolbar>
+  <ButtonToolbar>{renderDropdownButton}</ButtonToolbar>
 )
 
 export default PeriodType
-/*    
+
 const options = [
   { value: 'Daily', label: 'Daily' },
   { value: 'Weekly', label: 'Weekly' },

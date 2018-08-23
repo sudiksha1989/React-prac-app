@@ -1,6 +1,6 @@
 import React from 'react';
 import {Panel,ListGroup,ListGroupItem}  from 'react-bootstrap'
-
+import './AvailPeriods.css'
 
 class AvailPeriods extends React.Component{
     handleClick() {
@@ -8,23 +8,24 @@ class AvailPeriods extends React.Component{
       }
     render(){
           return(
-            <Panel>
+            <Panel >
                 <Panel.Heading >Available Periods</Panel.Heading>
+               <div className='panel-display'>
                      <ListGroup >
-                        <ListGroupItem className='btn'>Item 1</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 2</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 3</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 1</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 2</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 3</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 1</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 2</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 3</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 1</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 2</ListGroupItem>
-                        <ListGroupItem className='btn'>Item 3</ListGroupItem>
+                        <ListGroupItem >Item 1</ListGroupItem>
+                        <ListGroupItem >Item 2</ListGroupItem>
+                        <ListGroupItem >Item 3</ListGroupItem>
+                        <ListGroupItem >Item 1</ListGroupItem>
+                        <ListGroupItem >Item 2</ListGroupItem>
+                        <ListGroupItem >Item 3</ListGroupItem>
+                        <ListGroupItem >Item 1</ListGroupItem>
+                        <ListGroupItem >Item 2</ListGroupItem>
+                        <ListGroupItem >Item 3</ListGroupItem>
+                        <ListGroupItem >Item 1</ListGroupItem>
+                        <ListGroupItem >Item 2</ListGroupItem>
+                        <ListGroupItem >Item 3</ListGroupItem>
                     </ListGroup>
-                
+                    </div>
             </Panel>
           )
       }

@@ -1,12 +1,6 @@
-.btn{
-    background-color: #ddd;
-    color: black;
-    font-size: 16px;
-    transition: 0.3s;
-}
 
-.panel{
-  height:100px;
-  overflow-y:scroll;
-  width:100%;
+
+.panel-display{
+  height: 150px;
+  overflow-y: scroll;
 }

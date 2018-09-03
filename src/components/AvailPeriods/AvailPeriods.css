@@ -4,3 +4,13 @@
   height: 150px;
   overflow-y: scroll;
 }
+
+.list-group-item {
+  padding: 3px 15px;
+  font-weight:normal;
+}
+
+
+.list-group li:hover{
+  background-color: aqua;
+}

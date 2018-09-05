@@ -3,6 +3,7 @@ import './LockException.css'
 
 import PeriodType from './PeriodType/PeriodType';
 import AvailPeriods from './AvailPeriods/AvailPeriods'
+import SelectedPeriod from './AvailPeriods/SelectedPeriod'
 
 class LockException extends Component{
     
@@ -15,7 +16,7 @@ class LockException extends Component{
             <tr>
                 <th rowspan="4"><AvailPeriods/></th>
                 <th><input type="button" value="Click Me"></input></th>
-                <th rowspan="4"><AvailPeriods/></th>
+                <th rowspan="4"><SelectedPeriod/></th>
             </tr>
             <tr>
                 <td><input type="button" value="Click Me"></input></td>

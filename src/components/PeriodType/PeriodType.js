@@ -40,15 +40,7 @@ render() {
   return (
       <ButtonToolbar>{this.renderDropdownButton()}</ButtonToolbar>
    );
-}
-
-
-
-
-
-
-
-}
+}}
 
 
 

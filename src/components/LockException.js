@@ -27,6 +27,20 @@ class LockException extends Component{
             <tr>
                 <td><input type="button" value="Click Me"></input></td>
             </tr>
+            <tr>
+                <th rowspan="4"><AvailPeriods/></th>
+                <th><input type="button" value="Click Me"></input></th>
+                <th rowspan="4"><SelectedPeriod/></th>
+            </tr>
+            <tr>
+                <td><input type="button" value="Click Me"></input></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="Click Me"></input></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="Click Me"></input></td>
+            </tr>
             </table>
             </div>
             </div>

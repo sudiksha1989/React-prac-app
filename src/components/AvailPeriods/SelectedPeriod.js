@@ -8,6 +8,8 @@ class SelectedPeriod extends React.Component{
         alert('You have clicked on me');
       }
     render(){
+
+        console.log(this.props.name)
           return(
             <Panel >
                 <Panel.Heading >Selected Periods</Panel.Heading>

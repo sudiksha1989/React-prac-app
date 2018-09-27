@@ -1,7 +1,6 @@
 import React from 'react';
 import {Panel,ListGroup,ListGroupItem}  from 'react-bootstrap'
 import './AvailPeriods.css'
-import SelectedPeriod from './SelectedPeriod'
 
 class AvailPeriods extends React.Component{
 
@@ -21,55 +20,40 @@ class AvailPeriods extends React.Component{
               {item:'item11',value:'item11'}
             ],
           selectedval:''}
-
-          this.selectedperiod=this.selectedperiod.bind(this)
+           
+         
   }
-  handleChange(e) {
+  handleUpdate(e) {
         var array = [...this.state.option];
         this.setState({selectedval:e.target.value})
         array.forEach((val,index)=>{
           if(e.target.value===val.item)
                 array.splice(index,1);
           })
-                     //   {return ()})
-        
         this.setState({option:array});
-        console.log('You have clicked on me----')
-      }
+        this.setState({selectedval:e.target.value});
+       }
 
-      createOptions(){
-          this.optionItems=this.state.option.map((arr)=><option value={arr.item}
-          
-          
-          
-          
-          
-          
-          
-          onClick={this.handleChange.bind(this)}>{arr.value}</option>)
-            return(this.optionItems)
-      }
-      selectedperiod(){
-        this.setState({ greetings: [...this.state.greetings, newName] });
-      }
-
+     
     render(){
+
+
+      var optionItems=this.state.option.map((arr)=>
+      <option value={arr.item} onClick={this.handleUpdate.bind(this)}>{arr.value}</option>)
+
+
+
+
           return(
             <Panel >
                 <Panel.Heading >Available Periods</Panel.Heading>
-                     <select multiple className='form-control' >
-                          <SelectedPeriod selectedperiod={this.selectedperiod}/>
-                           {this.createOptions()}
+                     <select multiple className='form-control' onChange={this.props.handleOnChange}>
+                     {optionItems}
+                        
                      </select>
                </Panel>
           )
       }
-
-
-
-
-    
-
 
 }
 

@@ -2,32 +2,31 @@ import React,{Component} from 'react';
 import './LockException.css'
 
 import PeriodType from './PeriodType/PeriodType';
-import AvailPeriods from './AvailPeriods/AvailPeriods'
-import SelectedPeriod from './AvailPeriods/SelectedPeriod'
+import AvailPeriods from './Periods/AvailPeriods'
+import SelectedPeriod from './Periods/SelectedPeriod'
+import AvailDataSets from './DataSets/AvailDataSets'
+import SelectedDataSets from './DataSets/SelectedDataSets'
 
 class LockException extends Component{
 
     constructor() {
         super();
         this.state = {
-          selectValue: '' // use this as default
-        }
+            availPeriod:null,
+            selectedPeiod: null, // use this as default
+
+         }
       }
 
-      handleOnChange(e) {
-        this.setState({
-          selectValue: e.target.value
-        });
-      }
+      handleAvailPeriods(item) {
+        this.setState({selectedPeiod:item,availPeriod:null})
+       }
+       handleSelPeriods(item) {
+        this.setState({availPeriod:item,selectedPeiod:null})
+       }
 
-
-
-
-
-
-    
-    render(){
-        const {selectValue} = this.state;
+      render(){
+        
 
 
         return (
@@ -36,14 +35,12 @@ class LockException extends Component{
             <table>
             <tr><th><PeriodType/></th></tr>
             <tr>
-                <th ><AvailPeriods  handleOnChange={this.handleOnChange.bind(this)}/></th>
-                <th ><SelectedPeriod  selectValue={selectValue}/></th>
+                <th ><AvailPeriods    callback={this.handleAvailPeriods.bind(this)} AvailPeriods={this.state.availPeriod}/></th>
+                <th ><SelectedPeriod  SelectedPeiod={this.state.selectedPeiod}  callback={this.handleSelPeriods.bind(this)}/></th>
             </tr>
             
             <tr>
-                <th ><AvailPeriods/></th>
-                <th ><SelectedPeriod/></th>
-            </tr>
+              </tr>
             </table>
             </div>
             </div>

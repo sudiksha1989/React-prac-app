@@ -12,17 +12,28 @@ class LockException extends Component{
     constructor() {
         super();
         this.state = {
+            periodType:null,// use null as default
             availPeriod:null,
-            selectedPeiod: null, // use this as default
-
+            selectedPeriod: null, 
+            availDataSets:null,
+            SelectedDataSets:null
          }
       }
 
       handleAvailPeriods(item) {
-        this.setState({selectedPeiod:item,availPeriod:null})
+        this.setState({selectedPeriod:item,availPeriod:null,periodType:null})
        }
        handleSelPeriods(item) {
-        this.setState({availPeriod:item,selectedPeiod:null})
+        this.setState({availPeriod:item,selectedPeriod:null})
+       }
+       updatePeriodType(item){
+           this.setState({periodType:item})
+       }
+       handleAvailDataSets(item) {
+        this.setState({SelectedDataSets:item,availDataSets:null,periodType:null})
+       }
+       handleSelDataSets(item) {
+        this.setState({availDataSets:item,SelectedDataSets:null})
        }
 
       render(){
@@ -33,12 +44,13 @@ class LockException extends Component{
             <div className='MainPage'>
             <div className='display'>
             <table>
-            <tr><th><PeriodType/></th></tr>
+            <tr><th><PeriodType   callback={this.updatePeriodType.bind(this)}/></th></tr>
             <tr>
-                <th ><AvailPeriods    callback={this.handleAvailPeriods.bind(this)} AvailPeriods={this.state.availPeriod}/></th>
-                <th ><SelectedPeriod  SelectedPeiod={this.state.selectedPeiod}  callback={this.handleSelPeriods.bind(this)}/></th>
+                <th ><AvailPeriods PeriodType={this.state.periodType} callback={this.handleAvailPeriods.bind(this)} AvailPeriods={this.state.availPeriod}/></th>
+                <th ><SelectedPeriod PeriodType={this.state.periodType} SelectedPeriod={this.state.selectedPeriod}  callback={this.handleSelPeriods.bind(this)}/></th>
             </tr>
-            
+                <th ><AvailDataSets   PeriodType={this.state.periodType} callback={this.handleAvailDataSets.bind(this)}  AvailDataSets={this.state.availDataSets} /></th>
+                <th ><SelectedDataSets   PeriodType={this.state.periodType} SelectedDataSets={this.state.SelectedDataSets} callback={this.handleSelDataSets.bind(this)} /></th>
             <tr>
               </tr>
             </table>

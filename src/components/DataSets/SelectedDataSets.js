@@ -2,56 +2,58 @@ import React from 'react';
 import {Panel}  from 'react-bootstrap'
 import './style.css'
 
-let array=[]
-class SelectedPeriod extends React.Component{
+class SelectedDataSets extends React.Component{
     constructor(props){
         super(props);
-        this.state={
-          option:[]}
+         this.state={option:[]}
           }
 
-    handleUpdate(e) {
-        var array = [...this.state.option];
-        this.setState({selectedval:e.target.value})
-        array.forEach((val,index)=>{
-          if(e.target.value===val)
+          componentWillReceiveProps(props){
+              if(props.SelectedDataSets!=null)
+              this.getDataSets(props.SelectedDataSets);
+              if(props.PeriodType!=null)
+              {
+                var array = [...this.state.option];
+                array=[]
+                this.setState({option:array})
+              }
+             }
+            getcontent(event){
+            var array = [...this.state.option];
+            var eventval=[]
+            array.forEach((val,index)=>{
+              if(event.target.value===val.id)
+              {
+                eventval.push(val)
                 array.splice(index,1);
-          })
-        this.setState({option:array});
+                }})
+            this.setState({option:array,event:eventval},function(){
+                this.props.callback(this.state.event)
+            });
+            
         }
+
+        getDataSets(dataSets){
+            this.state.option.push(dataSets[0])
+        }
+
    
- render(){
-        console.log("-------------"+this.props.availPeiod)
-        this.state.option.push()
-      /*  array.push(this.props.selectValue);
-        array = array.filter(function( element ) {
-            return element !== undefined;
-         });*/
-
-         if(this.props.availPeiod.length!=0)
-         {
-             this.props.availPeiod.map((arr)=>this.state.option.push(arr))
-         }
-       //  this.state.option.push(this.props.availPeiod)
-
-         var optionItems= this.state.option.map((arr)=><option value={arr} onClick={this.handleUpdate.bind(this)}>{arr}</option>)         
+      render(){
+       // if(this.props.SelectedDataSets!=null)
+       // this.state.option.push(this.props.SelectedDataSets)
+        
+         var optionItems= this.state.option.map((arr)=>
+         <option value={arr.id}>{arr.name}</option>)         
          
            return(
             <Panel >
                 <Panel.Heading >Selected DataSets</Panel.Heading>
-                     <select multiple className='form-control' onChange={this.props.handleSelPeriods}>
+                     <select multiple className='form-control' onDoubleClick={this.getcontent.bind(this)}>
                          {optionItems}
                      </select>
                </Panel>
           )
       }
-
-
-
-
-    
-
-
 }
 
-export default SelectedPeriod;
+export default SelectedDataSets;

@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
+import {Panel}  from 'react-bootstrap'
+import DropdownTreeSelect from 'react-dropdown-tree-select'
+import 'react-dropdown-tree-select/dist/styles.css' 
 import "./ViewTree.css";
-import Tree from './components/tree';
 
 class ViewTree extends React.Component {
 
@@ -16,9 +18,17 @@ class ViewTree extends React.Component {
         orgUnitID: '',
         levels: undefined
     }
-    this.onToggle = this.onToggle.bind(this);
-    this.closeSidebar = this.closeSidebar.bind(this);
+   
 }
+    onChange = (currentNode, selectedNodes) => {
+        console.log('onChange::', currentNode, selectedNodes)
+  }
+   onAction = ({ action, node }) => {
+    console.log(`onAction:: [${action}]`, node)
+  }
+   onNodeToggle = currentNode => {
+    console.log('onNodeToggle::', currentNode)
+  }
 
 componentDidMount() {
     let url = '../../../api/organisationUnits.json?paging=false&level=2&fields=id,name';
@@ -42,10 +52,17 @@ componentDidMount() {
             .then(response => response.json())
             .then(
                 (result1) => {
+                    let data,str,json;
                     result1.organisationUnits[0].toggled = true;
+                    data=result1.organisationUnits[0]
+                    str = JSON.stringify(data);
+                    str = str.replace(/\"id\":/g, "\"value\":");
+                    str = str.replace(/\"name\":/g, "\"label\":");
+                    json = JSON.parse(str);
+                    //var hierarchy=this.getHierarchy(result1.organisationUnits[0])
                     this.setState({
                     isLoaded: true,
-                    orgUnits: result1.organisationUnits,
+                    orgUnits: json,
                     });
                 },
                 (error1) => {
@@ -64,43 +81,25 @@ componentDidMount() {
     )
 }
 
-onToggle(node, toggled) {
-    if(this.state.cursor){this.state.cursor.active = false;}
-    node.active = true;
-    this.setState({
-        orgUnitName: node.name,
-        orgUnitID: node.id
-    });
 
-    if(node.children){ node.toggled = toggled; }
-    this.setState({ cursor: node });
-}
-
-openSidebar() {
-    document.getElementById("sidebar").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
-}
-
-closeSidebar() {
-    document.getElementById("sidebar").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
-}
 
   render() {
     const { error, error1, isLoaded, orgUnits, orgUnitName, orgUnitID, levels} = this.state;
-       
-   return (
-    (error || error1) ? <div>{error.message}</div> :
+    
+    return(
+        (error || error1) ? <div>{error.message}</div> :
                 (!isLoaded) ? <div>Loading...</div> :
-                <Tree data={orgUnits}
-                           onToggle={this.onToggle} />
+        <Panel >
+                <Panel.Heading >Organisation Units Select</Panel.Heading>
+                <div className="orgUnitSelect">
+                <DropdownTreeSelect data={orgUnits} arrow={false} placeholderText="Search" showDropdown={true} onChange={this.onChange} onAction={this.onAction} onNodeToggle={this.onNodeToggle} />
+                </div>
+                           </Panel>
     )
+
+
   }
 }
 
 
 export default ViewTree;
-
-
-// WEBPACK FOOTER //
-// ./src/components/Treeview/ViewTree.js

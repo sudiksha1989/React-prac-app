@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import './LeftBar.css'
-import ViewTree from '../Treeview/ViewTree'
+
 
 const LeftBar=()=>(
   <header className='LeftBar'>
@@ -11,9 +11,7 @@ const LeftBar=()=>(
          <li ><Link to='/LockException'>Lock Exception</Link></li>
         </ul>
     </nav>
-    <div>
-    <ViewTree/>
-    </div>
+    
     
   </header>
 )

@@ -56,13 +56,6 @@ class SelectedPeriod extends React.Component{
                </Panel>
           )
       }
-
-
-
-
-    
-
-
 }
 
 export default SelectedPeriod;

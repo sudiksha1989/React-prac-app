@@ -6,6 +6,10 @@ import AvailPeriods from './Periods/AvailPeriods'
 import SelectedPeriod from './Periods/SelectedPeriod'
 import AvailDataSets from './DataSets/AvailDataSets'
 import SelectedDataSets from './DataSets/SelectedDataSets'
+import ViewTree from './Treeview/ViewTree'
+
+
+
 
 class LockException extends Component{
 
@@ -36,11 +40,9 @@ class LockException extends Component{
         this.setState({availDataSets:item,SelectedDataSets:null})
        }
 
+      
       render(){
-        
-
-
-        return (
+       return (
             <div className='MainPage'>
             <div className='display'>
             <table>
@@ -49,10 +51,13 @@ class LockException extends Component{
                 <th ><AvailPeriods PeriodType={this.state.periodType} callback={this.handleAvailPeriods.bind(this)} AvailPeriods={this.state.availPeriod}/></th>
                 <th ><SelectedPeriod PeriodType={this.state.periodType} SelectedPeriod={this.state.selectedPeriod}  callback={this.handleSelPeriods.bind(this)}/></th>
             </tr>
+            <tr>
                 <th ><AvailDataSets   PeriodType={this.state.periodType} callback={this.handleAvailDataSets.bind(this)}  AvailDataSets={this.state.availDataSets} /></th>
                 <th ><SelectedDataSets   PeriodType={this.state.periodType} SelectedDataSets={this.state.SelectedDataSets} callback={this.handleSelDataSets.bind(this)} /></th>
+            </tr>
             <tr>
-              </tr>
+                <th><ViewTree/></th>
+            </tr>
             </table>
             </div>
             </div>
@@ -63,5 +68,5 @@ class LockException extends Component{
 export default LockException;
 
 
-// WEBPACK FOOTER //
+// WEBPACK FOOTER // // in real world, you'd want to render to an element, instead of body.
 // ./src/components/HelloWorldList.js

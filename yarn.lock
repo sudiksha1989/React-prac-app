@@ -6101,9 +6101,9 @@ react-dom@^16.4.1:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-dropdown-tree-select@^1.12.3:
-  version "1.12.3"
-  resolved "https://registry.yarnpkg.com/react-dropdown-tree-select/-/react-dropdown-tree-select-1.12.3.tgz#21f3425e4e63bb1c52ab27ec0bc6843ac23121d7"
+react-dropdown-tree-select@^1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/react-dropdown-tree-select/-/react-dropdown-tree-select-1.13.0.tgz#e992f407564937903adef63930b23198547b2ba8"
   dependencies:
     array.partial "^1.0.4"
     classnames "^2.2.5"

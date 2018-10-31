@@ -61,7 +61,7 @@ class AvailPeriods extends React.Component{
           <option value={arr.value}>{arr.month}</option>)
           return(
                 <Panel>
-                    <Panel.Heading >Available Periods</Panel.Heading>
+                    <Panel.Heading >Organisation Unit Selection</Panel.Heading>
                         {(this.state.periodType=='Monthly')?<SelectedDropdown PeriodType={this.state.periodType} callback={this.handleUpdate}/>:false}
                         <select multiple className='form-control' onDoubleClick={this.getContent.bind(this)}>
                             {optionItems}
